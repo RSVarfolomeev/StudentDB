@@ -31,8 +31,15 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student save(Student student) {
-        return studentRepository.save(student);
+    public void save(Student student) {
+        if (!student.getFirstName().equals("") && student.getFirstName() != null
+                && !student.getMiddleName().equals("") && student.getMiddleName() != null
+                && !student.getLastName().equals("") && student.getLastName() != null
+                && student.getBirthDate() != null
+                && !student.getGroup().equals("") && student.getGroup() != null) {
+
+            studentRepository.save(student);
+        }
     }
 
     @Override

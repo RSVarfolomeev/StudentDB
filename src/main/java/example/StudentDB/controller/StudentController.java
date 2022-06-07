@@ -34,15 +34,7 @@ public class StudentController {
 
     @PostMapping("/addstudent")
     public String addStudent(@ModelAttribute Student student) {
-        if (student.getFirstName().equals("") || student.getFirstName() == null
-                || student.getMiddleName().equals("") || student.getMiddleName() == null
-                || student.getLastName().equals("") || student.getLastName() == null
-                || student.getBirthDate() == null
-                || student.getGroup().equals("") || student.getGroup() == null) {
-            return "redirect:/v1/students";
-        } else {
-            studentService.save(student);
-            return "redirect:/v1/students";
-        }
+        studentService.save(student);
+        return "redirect:/v1/students";
     }
 }
