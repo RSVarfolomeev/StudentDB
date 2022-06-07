@@ -1,6 +1,5 @@
 package example.StudentDB.entity;
 
-import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
