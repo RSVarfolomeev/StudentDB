@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link th:href="@{/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="table_block">
+    <div class="shutdown">
+        <form th:action="@{/shutdownContext}" th:method="post">
+            <input class="shutdown_button" type="submit" value="Close application">
+        </form>
+    </div>
+    <h1>Table of students</h1>
+    <table>
+        <thead>
+        <tr class="column_header">
+            <td>Id</td>
+            <td>Firstname</td>
+            <td>Middlename</td>
+            <td>Lastname</td>
+            <td>Birthdate</td>
+            <td>Group</td>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student: ${students}">
+            <td th:text="${student.id}"/>
+            <td th:text="${student.firstName}"/>
+            <td th:text="${student.middleName}"/>
+            <td th:text="${student.lastName}"/>
+            <td th:text="${student.birthDate}"/>
+            <td th:text="${student.group}"/>
+            <td class="delete_cell">
+                <form th:action="@{/v1/students/delete}" th:method="post">
+                    <input type="hidden" name="id" th:value="${student.id}"/>
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="add_block">
+    <h2>Add Student</h2>
+    <form class="add_form" th:action="@{/v1/students/addstudent}" th:method="post">
+        <label class="add_label">FirstName</label>
+        <input class="add_part" type="text" name="firstName" placeholder="Иван" required>
+        <label class="add_label">MiddleName</label>
+        <input class="add_part" type="text" name="middleName" placeholder="Иванович" required>
+        <label class="add_label">LastName</label>
+        <input class="add_part" type="text" name="lastName" placeholder="Иванов" required>
+        <label class="add_label">BirthDate</label>
+        <input class="add_part" type="date" name="birthDate" required>
+        <label class="add_label">Group</label>
+        <input class="add_part" type="text" name="group" placeholder="ТЛТ-212" required>
+        <input class="button" type="submit" value="Add to table">
+    </form>
+</div>
+</body>
+</html>
